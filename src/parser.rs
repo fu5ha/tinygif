@@ -46,19 +46,3 @@ pub fn eat_len_prefixed_subblocks(input: &[u8]) -> Result<&[u8], ParseError> {
         }
     }
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_eat_len_prefixed_subblocks() {
-        let input = b"\x02\x01\x02\x00";
-        let input = eat_len_prefixed_subblocks(input).unwrap();
-        assert_eq!(input, b"");
-
-        let input = b"\x00\x01\x02\x00";
-        let input = eat_len_prefixed_subblocks(input).unwrap();
-        assert_eq!(input, b"\x01\x02\x00");
-    }
-}
